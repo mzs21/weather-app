@@ -1,3 +1,27 @@
+export interface InputData {
+  query: string;
+  queryChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  search: (e: React.KeyboardEvent<HTMLInputElement>) => Promise<void>;
+  classNames?: string;
+}
+
+export interface WeatherData {
+  coord: Coord;
+  base: string;
+  main: Main;
+  visibility: number;
+  weather: Weather[];
+  wind: Wind;
+  rain: Rain;
+  clouds: Clouds;
+  dt: number;
+  sys: Sys;
+  timezone: number;
+  id: number;
+  name: string;
+  cod: number;
+}
+
 interface Weather {
   id: number;
   main: string;
@@ -5,44 +29,38 @@ interface Weather {
   icon: string;
 }
 
-export interface WeatherData {
-  coord: {
-    lon: number;
-    lat: number;
-  };
+interface Coord {
+  lon: number;
+  lat: number;
+}
 
-  base: string;
-  main: {
-    temp: number;
-    feels_like: number;
-    temp_min: number;
-    temp_max: number;
-    pressure: number;
-    humidity: number;
-  };
-  visibility: number;
-  weather: Weather[];
-  wind: {
-    speed: number;
-    deg: number;
-    gust: number;
-  };
-  rain: {
-    "1h": number;
-  };
-  clouds: {
-    all: number;
-  };
-  dt: number;
-  sys: {
-    type: number;
-    id: number;
-    country: string;
-    sunrise: number;
-    sunset: number;
-  };
-  timezone: number;
+interface Main {
+  temp: number;
+  feels_like: number;
+  temp_min: number;
+  temp_max: number;
+  pressure: number;
+  humidity: number;
+}
+
+interface Wind {
+  speed: number;
+  deg: number;
+  gust: number;
+}
+
+interface Rain {
+  "1h": number;
+}
+
+interface Clouds {
+  all: number;
+}
+
+interface Sys {
+  type: number;
   id: number;
-  name: string;
-  cod: number;
+  country: string;
+  sunrise: number;
+  sunset: number;
 }

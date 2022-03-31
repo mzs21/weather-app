@@ -1,10 +1,18 @@
 import { useState } from "react";
 import fetchWeather from "./api/fetchWeather";
+import CityName from "./components/CityName";
+import CityTemp from "./components/CityTemp";
+import Info from "./components/Info";
+import Input from "./components/Input";
+import InputContext from "./context/InputContext";
+import WeatherContext from "./context/WeatherContext";
 import { WeatherData } from "./Interface";
 
 function App() {
   const [query, setQuery] = useState<string>("");
   const [weather, setWeather] = useState<WeatherData>();
+
+  console.log(weather);
 
   const queryChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setQuery(e.target.value);
@@ -17,46 +25,39 @@ function App() {
 
       setWeather(data); // Passing the data to the setWeather function
       setQuery(""); // Clearing the input field
-
-      // console.log(data);
     }
   };
 
-  return (
-    <div className="main-container">
-      <input
-        type="text"
-        className="search"
-        placeholder="Search..."
-        value={query}
-        onChange={queryChange}
-        onKeyPress={search}
-      />
-
-      {weather?.main && (
-        <div className="city">
-          <h2 className="cityName">
-            <span>{weather?.name}</span>
-            <sup>{weather?.sys.country}</sup>
-          </h2>
-
-          <div className="city-temp">
-            {weather?.main.temp}
-            <sup>&deg;C</sup>
-          </div>
-
-          <div className="info">
-            <img
-              src={`https://openweathermap.org/img/wn/${weather?.weather[0].icon}@2x.png`}
-              alt={weather?.weather[0].description}
-              className="city-icon"
-            />
-            <p>{weather?.weather[0].description}</p>
-          </div>
-        </div>
-      )}
-    </div>
+  let InputContextProvider = (
+    <InputContext.Provider value={{ query, queryChange, search }}>
+      <Input />
+    </InputContext.Provider>
   );
+
+  if (!weather) {
+    // Checking if the weather data is not available
+    return (
+      <>
+        {InputContextProvider}
+        <div>{`Please type city name`}</div>
+      </>
+    );
+  } else
+    return (
+      <div className="main-container">
+        {InputContextProvider}
+
+        {weather.main && (
+          <div className="city">
+            <WeatherContext.Provider value={weather}>
+              <CityName />
+              <CityTemp />
+              <Info />
+            </WeatherContext.Provider>
+          </div>
+        )}
+      </div>
+    );
 }
 
 export default App;
