@@ -4,7 +4,7 @@ import { WeatherData } from "./Interface";
 
 function App() {
   const [query, setQuery] = useState<string>("");
-  const [weather, setWeather] = useState<WeatherData>({});
+  const [weather, setWeather] = useState<WeatherData>();
 
   const queryChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setQuery(e.target.value);
@@ -18,7 +18,7 @@ function App() {
       setWeather(data); // Passing the data to the setWeather function
       setQuery(""); // Clearing the input field
 
-      console.log(data);
+      // console.log(data);
     }
   };
 
@@ -32,24 +32,26 @@ function App() {
         onChange={queryChange}
         onKeyPress={search}
       />
-      {weather.main && (
+
+      {weather?.main && (
         <div className="city">
           <h2 className="cityName">
-            <span>{weather.name}</span>
-            <sup>{weather.sys.country}</sup>
+            <span>{weather?.name}</span>
+            <sup>{weather?.sys.country}</sup>
           </h2>
 
           <div className="city-temp">
-            {weather.main.temp}
+            {weather?.main.temp}
             <sup>&deg;C</sup>
           </div>
+
           <div className="info">
             <img
-              src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
-              alt={weather.weather[0].description}
+              src={`https://openweathermap.org/img/wn/${weather?.weather[0].icon}@2x.png`}
+              alt={weather?.weather[0].description}
               className="city-icon"
             />
-            <p>{weather.weather[0].description}</p>
+            <p>{weather?.weather[0].description}</p>
           </div>
         </div>
       )}
