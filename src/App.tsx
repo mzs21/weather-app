@@ -16,17 +16,17 @@ function App() {
 
   const queryChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setQuery(e.target.value);
-
+  
   const search = async (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") {
-      // Checking if the key pressed is Enter
+      if (e.key === "Enter") {
+        // Checking if the key pressed is Enter
 
-      const data = await fetchWeather(query); // Calling the fetchWeather function
+        const data = await fetchWeather(query); // Calling the fetchWeather function
 
-      setWeather(data); // Passing the data to the setWeather function
-      setQuery(""); // Clearing the input field
-    }
-  };
+        setWeather(data); // Passing the data to the setWeather function
+        setQuery(""); // Clearing the input field
+      }
+    };
 
   let InputContextProvider = (
     <InputContext.Provider value={{ query, queryChange, search }}>
