@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import fetchWeather from "./api/fetchWeather";
 import CityName from "./components/CityName";
 import CityTemp from "./components/CityTemp";
@@ -16,22 +16,28 @@ function App() {
 
   const queryChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setQuery(e.target.value);
-  
-  const search = async (e: React.KeyboardEvent<HTMLInputElement>) => {
-      if (e.key === "Enter") {
-        // Checking if the key pressed is Enter
 
-        const data = await fetchWeather(query); // Calling the fetchWeather function
+    let search = useRef();
 
-        setWeather(data); // Passing the data to the setWeather function
-        setQuery(""); // Clearing the input field
-      }
-    };
+    useEffect(() => {
+      search.current = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      // Checking if the key pressed is Enter
+
+      const data = await fetchWeather(query); // Calling the fetchWeather function
+
+      setWeather(data); // Passing the data to the setWeather function
+      setQuery(""); // Clearing the input field
+    }
+  };
+    }, [query])
+    
+   
 
   let InputContextProvider = (
-    <InputContext.Provider value={{ query, queryChange, search }}>
-      <Input />
-    </InputContext.Provider>
+      <InputContext.Provider value={{ query, queryChange, search }}>
+        <Input />
+      </InputContext.Provider>
   );
 
   if (!weather) {
