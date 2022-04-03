@@ -2,7 +2,6 @@ export interface InputData {
   query: string;
   queryChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   search: (e: React.KeyboardEvent<HTMLInputElement>) => Promise<void>;
-  classNames?: string;
 }
 
 export interface WeatherData {

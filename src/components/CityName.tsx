@@ -4,10 +4,13 @@ import WeatherContext from "../context/WeatherContext";
 const CityName = () => {
   const weather = React.useContext(WeatherContext);
 
+  let weatherName = weather.name;
+  let weatherCountry = weather.sys.country;
+
   return (
     <h2 className="cityName">
-      <span>{weather.name}</span>
-      <sup>{weather.sys.country}</sup>
+      <span>{weatherName}</span>
+      <sup>{weatherCountry}</sup>
     </h2>
   );
 };
