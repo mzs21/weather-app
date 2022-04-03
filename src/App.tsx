@@ -83,6 +83,8 @@ function App() {
     </InputContext.Provider>
   );
 
+
+
   if (!weather) {
     // Checking if the weather data is not available
     return (
