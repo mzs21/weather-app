@@ -2,8 +2,9 @@ import { useState } from "react";
 import fetchWeather from "./api/fetchWeather";
 import CityName from "./components/CityName";
 import CityTemp from "./components/CityTemp";
-import Info from "./components/Info";
 import Input from "./components/Input";
+import WeatherDescription from "./components/WeatherDescription";
+import WeatherIcon from "./components/WeatherIcon";
 import InputContext from "./context/InputContext";
 import WeatherContext from "./context/WeatherContext";
 import "./index.css";
@@ -42,20 +43,24 @@ function App() {
       <div>
         <div className="container ">
           {weather.main && (
-            <div className="grid place-items-center gap-y-10">
+            <div className="grid place-items-center opacity-80">
               <div>{InputContextProvider}</div>
-
-              <WeatherContext.Provider value={weather}>
-                <div>
-                  <CityName />
-                </div>
-                <div>
-                  <CityTemp />
-                </div>
-                <div>
-                  <Info />
-                </div>
-              </WeatherContext.Provider>
+              <div className="grid place-items-center gap-y-6 bg-white w-64 h-auto py-10 rounded-lg">
+                <WeatherContext.Provider value={weather}>
+                  <div>
+                    <CityName />
+                  </div>
+                  <div>
+                    <CityTemp />
+                  </div>
+                  <div>
+                    <WeatherIcon />
+                  </div>
+                  <div>
+                    <WeatherDescription />
+                  </div>
+                </WeatherContext.Provider>
+              </div>
             </div>
           )}
         </div>

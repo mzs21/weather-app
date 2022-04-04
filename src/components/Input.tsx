@@ -10,6 +10,7 @@ const Input = () => {
       value={query}
       onChange={queryChange}
       onKeyPress={search}
+      className="mb-10 w-64 h-auto py-2 rounded-lg text-center focus:outline-none"
     />
   );
 };
