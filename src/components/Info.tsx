@@ -8,13 +8,15 @@ const Info = () => {
   let weatherDescription = weather.weather[0].description;
 
   return (
-    <div className="info">
+    <div>
       <img
         src={`https://openweathermap.org/img/wn/${weatherIcon}@2x.png`}
         alt={weatherDescription}
-        className="city-icon"
+        className="ml-5"
       />
-      <p>{weatherDescription}</p>
+      <p className="text-base text-center">
+        {weatherDescription.toUpperCase()}
+      </p>
     </div>
   );
 };

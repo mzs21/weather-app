@@ -7,7 +7,6 @@ const Input = () => {
     <input
       type="text"
       placeholder="Search..."
-      className=""
       value={query}
       onChange={queryChange}
       onKeyPress={search}

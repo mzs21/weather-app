@@ -7,7 +7,7 @@ const CityTemp = () => {
   let weatherMainTemp = weather.main.temp;
 
   return (
-    <div className="city-temp">
+    <div className="text-4xl font-black">
       {weatherMainTemp}
       <sup>&deg;C</sup>
     </div>
