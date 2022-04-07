@@ -18,17 +18,18 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("../service-worker.ts")
+          .then(function (reg) {
+            console.log("Success: ", reg);
+          })
+          .catch(function (err) {
+            console.log("Failure: ", err);
+          });
+      }
+    </script>
   </body>
-  <!-- <script>
-    if ("serviceWorker" in navigator) {
-      navigator.serviceWorker
-        .register("../service-worker.ts")
-        .then(function (reg) {
-          console.log("Service Worker Registered");
-        })
-        .catch(function (err) {
-          console.log("Service Worker Failed", err);
-        });
-    }
-  </script> -->
 </html>
