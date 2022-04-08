@@ -10,6 +10,15 @@ import WeatherContext from "./context/WeatherContext";
 import "./index.css";
 import { WeatherData } from "./Interface";
 
+
+import { offlineFallback } from "workbox-recipes";
+import { setDefaultHandler } from "workbox-routing";
+import { NetworkOnly } from "workbox-strategies";
+
+setDefaultHandler(new NetworkOnly());
+
+offlineFallback();
+
 function App() {
   const [query, setQuery] = useState<string>("");
   const [weather, setWeather] = useState<WeatherData>();
