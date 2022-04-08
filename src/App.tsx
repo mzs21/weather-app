@@ -29,6 +29,7 @@ function App() {
       setQuery(""); // Clearing the input field
     }
   };
+
   let InputContextProvider = (
     <InputContext.Provider value={{ query, queryChange, search }}>
       <Input />
