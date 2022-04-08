@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Web site created using React, TypeScript & Tailwind CSS"
     />
     <link rel="apple-touch-icon" href="./images/weather-apple-touch-icon.png" />
 
@@ -18,18 +18,12 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-
     <script>
-      if ("serviceWorker" in navigator) {
-        navigator.serviceWorker
-          .register("../service-worker.ts")
-          .then(function (reg) {
-            console.log("Success: ", reg);
-          })
-          .catch(function (err) {
-            console.log("Failure: ", err);
-          });
-      }
+      window.addEventListener("load", () => {
+        if ("serviceWorker" in navigator) {
+          navigator.serviceWorker.register("../service-worker.ts");
+        }
+      });
     </script>
   </body>
 </html>
