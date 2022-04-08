@@ -15,11 +15,15 @@ import { offlineFallback } from "workbox-recipes";
 import { setDefaultHandler } from "workbox-routing";
 import { NetworkOnly } from "workbox-strategies";
 
-setDefaultHandler(new NetworkOnly());
 
-offlineFallback();
 
 function App() {
+
+  setDefaultHandler(new NetworkOnly());
+
+  offlineFallback();
+
+  
   const [query, setQuery] = useState<string>("");
   const [weather, setWeather] = useState<WeatherData>();
 
