@@ -73,9 +73,64 @@ registerRoute(
 // This allows the web app to trigger skipWaiting via
 // registration.waiting.postMessage({type: 'SKIP_WAITING'})
 
-
 self.addEventListener("message", (event) => {
   if (event.data && event.data.type === "SKIP_WAITING") {
     self.skipWaiting();
   }
 });
+
+// const CACHE_NAME = "cache_sample";
+// const urlsToCache = [
+//   "/static/css/8.74e12705.chunk.css",
+//   "/static/css/main.f4039512.chunk.css",
+//   "/static/js/8.fe897f0b.chunk.js",
+//   "/static/js/main.bcf94194.chunk.js",
+//   "/static/js/0.e2c58f2d.chunk.js",
+//   "/static/js/1.5d470210.chunk.js",
+//   "/static/js/4.9e9f39a1.chunk.js",
+//   "/static/js/12.4eb8aa89.chunk.js",
+//   "/static/js/16.9e2c1c31.chunk.js",
+//   "/offline.html",
+// ];
+// const version = "v0.0.1";
+
+// //install sw at first time
+// //place to cache assets to speed up the loading time of web page
+
+// self.addEventListener("install", (event: any) => {
+//   console.log("sw install event");
+//   event.waitUntil(
+//     caches.open(version + CACHE_NAME).then((cache) => {
+//       console.log("opened cache");
+//       return cache.addAll(urlsToCache);
+//     })
+//   );
+// });
+
+// //Activate the sw after install
+// //Place where old caches are cleared
+// self.addEventListener("activate", (event: any) => {
+//   console.log("sw activate event");
+//   event.waitUntil(
+//     caches.keys().then((cacheNames) =>
+//       Promise.all(
+//         cacheNames
+//           .filter((cacheName) => {
+//             return cacheName.indexOf(version) !== 0;
+//           })
+//           .map(function (cachName) {
+//             return caches.delete(cachName);
+//           })
+//       )
+//     )
+//   );
+// });
+
+// //listen for requests
+// self.addEventListener("fetch", (event: any) => {
+//   event.respondWith(
+//     caches.match(event.request).then((response) => {
+//       return response || fetch(event.request);
+//     })
+//   );
+// });

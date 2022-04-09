@@ -7,6 +7,7 @@
     @apply bg-[url('./assets/kenrick-mills-1h2Pg97SXfA-unsplash.jpg')] bg-cover bg-center bg-no-repeat h-screen w-screen overflow-hidden;
   }
 }
+
 @layer components {
   .container {
     @apply grid place-content-center my-36;
