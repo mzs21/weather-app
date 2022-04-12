@@ -10,20 +10,7 @@ import WeatherContext from "./context/WeatherContext";
 import "./index.css";
 import { WeatherData } from "./Interface";
 
-
-import { offlineFallback } from "workbox-recipes";
-import { setDefaultHandler } from "workbox-routing";
-import { NetworkOnly } from "workbox-strategies";
-
-
-
 function App() {
-
-  setDefaultHandler(new NetworkOnly());
-
-  offlineFallback();
-
-  
   const [query, setQuery] = useState<string>("");
   const [weather, setWeather] = useState<WeatherData>();
 
@@ -54,7 +41,6 @@ function App() {
     return <div className="container">{InputContextProvider}</div>;
   } else
     return (
-      <div>
         <div className="container ">
           {weather.main && (
             <div className="grid place-items-center opacity-80">
@@ -78,7 +64,7 @@ function App() {
             </div>
           )}
         </div>
-      </div>
+  
     );
 }
 
